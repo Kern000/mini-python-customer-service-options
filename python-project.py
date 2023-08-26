@@ -264,10 +264,9 @@ def delete_customer():
 def save_and_export_data():
 
     if len(customer_list) > 0:
-        file_path = "/Users/user/python02/output.json"
-        with open(file_path, "w") as file:
+        with open('output.json', "w") as file:
             json.dump(customer_list, file)
-        print('saved to folder user/python02 folder')
+        print('saved to same folder as this python file')
         return_choice(save_and_export_data)
     else:
         print('no customer exist')
