@@ -23,14 +23,15 @@ def display_menu():
         4. Update existing customer
         5. Delete customer
         6. Save and Export
-        7. Exit
+        7. Load Data
+        8. Exit
         """
 )
 
 def return_choice(function):
-    return_choice = input('return to main? y/n:' )
+    return_choice = input('return to main? y/n: ')
     while return_choice != 'y' and return_choice !='n':
-        return_choice = input('return to main? y/n:' )
+        return_choice = input('return to main? y/n: ')
     if return_choice == 'y':
         return main()
     else:
@@ -85,10 +86,7 @@ def choice_validator(choice):                           #Return validated Phone 
         validated_choice = re.match(pattern, choice_to_validate) 
     return int(choice_to_validate)
 
-
-
-# User input carousell
-
+# User input carousel
 def list_all_customers():
     if len(customer_list) > 0:
        for customer in customer_list:
@@ -242,17 +240,17 @@ def delete_customer():
         found_customer = customer_search_initiate_validation(customer_to_search)  #return customer or print no customer found
         if found_customer:
             print (found_customer)
-            confirm = input('delete this customer? y/n: ')
+            confirm = input('delete this single customer entry? y/n: ')
 
             while confirm != 'y' and confirm !='n':
                 print('Enter valid confirmation y/n')
-                confirm = input('Invalid response. Delete this customer? y/n: ')
+                confirm = input('Invalid response. Delete this single customer entry? y/n: ')
                 
             if confirm == 'y':
             
                 found_customer_index = customer_list.index(found_customer)
                 del customer_list[found_customer_index]
-                print('Customer data deleted')
+                print('Customer entry deleted')
 
                 return_choice(delete_customer)
 
@@ -272,12 +270,63 @@ def save_and_export_data():
         print('no customer exist')
         return_choice(save_and_export_data)
 
+def load_data():
+
+    global customer_list
+
+    choice = input("loading file. Proceed? y/n: ")
+    while choice != 'y' and choice != 'n':
+        choice = input("invalid input. Proceed to load data? y/n: ")
+
+    if choice == 'y':
+        file_path = input("Enter file name with extension in current folder, or if not, it\'s full filepath: ")
+        if file_path[-5:] != ".json":
+            print('unsupported file format')
+            return_choice(load_data)
+        else:
+            data_handling_method = input("Choose data handling method. Key in 'append' or 'overwrite': ")
+
+            while data_handling_method != 'append' and data_handling_method != 'overwrite':
+                data_handling_method = input("Choose a valid data handling method. Key in 'append' or 'overwrite': ")
+
+            try:
+                if data_handling_method == 'append':                
+                    with open(file_path, "r") as file:
+                        data = json.load(file)
+                    for customer in data:
+                        customer_list.append(customer)
+                    print ('Customer List =>', customer_list)
+                    return_choice(load_data)
+
+                elif data_handling_method == 'overwrite':
+                    print("warning. This will overwrite any unsaved customer List")
+
+                    overwrite_decision = input('confirm overwrite? y/n: ')
+
+                    while overwrite_decision !="y" and overwrite_decision !="n":
+                        overwrite_decision = input('Enter valid command. Confirm overwrite? y/n: ')
+
+                    if overwrite_decision == 'y':
+                        with open(file_path, "r") as file:
+                            data = json.load(file)
+                            customer_list = data
+                        print ('Retrieved Customer List =>', customer_list)
+                        return_choice(load_data)
+
+                    else:
+                        return_choice(load_data)
+            except:
+                print('file not found')
+                return_choice(load_data)
+    else:
+        return_choice(load_data)
+
 def user_choice():
 
     choice = 0
-    while choice not in range(1,8):
+    while choice not in range(1,9):
         display_menu()
-        choice = input("Please enter a choice 1-7: ")
+        choice = input("Please enter a choice 1-8: ")
         choice = choice_validator(choice)
            
         if choice == 1:
@@ -303,8 +352,12 @@ def user_choice():
         elif choice == 6:
             print('Chosen: Save customer')
             save_and_export_data()
-
+        
         elif choice == 7:
+            print('Chosen: load data from file')
+            load_data()
+
+        elif choice == 8:
             print("Thank you for visiting. We hope to see you again")
             break
 
