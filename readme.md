@@ -45,6 +45,7 @@ Important confirmations, like the overwriting or appending of data during upload
 ====== Testing ======
 
 Test Case 1
+Name of test: customer add and search
 == Success Case ==
 Press 3 to Add customer entry:
 key in:
@@ -62,6 +63,7 @@ press y to save customer details.
 On main terminal, press 2. to search for Alex Goh (with matching case) and it should display the same.
 
 Test Case 2
+Name of Test: Data entry validation
 == Failure case for testing validation ==
 Try to add the following customer details:
 Alex Goh 5
@@ -71,10 +73,14 @@ alexgod.com
 Expected Output: It should prompt for reentry of the data, guiding user on the correct information to enter.
 
 Test Case 3
+name of Test: Testing file load
 == Testing for the loading of wrong data type ==
 Enter meow.csv (an unsupported file format) -> Expected: it will inform unsupported file format
 Enter meow.json (a non-existent file name) -> Expected: After choosing append or overwrite, it will detect if file exist. Since it does not, it will inform file not found.
 
----
+====== Two Possible Enhancements ======
+
+1. Login system can be implemented to allow authentication and authorization.
+2. Indexing can be implemented for search to allow high performance when large datasets are expected.
 
 Thank you for reading.
