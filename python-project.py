@@ -171,10 +171,10 @@ def add_new_customer():
                 %(new_customer_name, validated_email_address, validated_phone_number)
         )
 
-        confirmation = input('Save customer details? y/n: ')
+        confirmation = input('Confirm customer details? y/n: ')
         while confirmation != 'y' and confirmation !='n':
             print('enter valid choice')
-            confirmation = input('Save customer details? y/n: ')
+            confirmation = input('Confirm customer details? y/n: ')
         if confirmation == 'y':
             customer_list.append(customer_entry)
             print('customer details confirmed!')
