@@ -358,8 +358,14 @@ def user_choice():
             load_data()
 
         elif choice == 8:
-            print("Thank you for visiting. We hope to see you again")
-            break
+            exit_choice = input("Have you saved and exported the file? unsaved data will be lost y/n: ")
+            while exit_choice != 'y' and exit_choice != 'n':
+                choice = input("Invalid entry. Have you save and exported the file? unsaved data will be lost y/n: ")
+            if exit_choice == 'n':   
+                user_choice()
+            else:          
+                print("Thank you for visiting. We hope to see you again")
+                break
 
 main()
 
