@@ -8,12 +8,15 @@ This is a python application that allows the admin user to navigate between meth
 
 Functional Requirements
 FR1.1: The system allows users to create a new customer entry.
+FR1.1.1: Each new customer entry must be filled in and cannot be left blank, and the input must match the required structure.
 FR1.2: The system allows users to list the existing customers entries.
 FR1.3: The system allows users to search for a customer entry.
 FR1.4: The system allows users to update a customer entry.
+FR1.4.1: Each new customer entry must be filled in and cannot be left blank, and the input must match the required structure.
 FR1.5: The system allows users to delete a customer entry.
 FR1.6: The system allows users to save and export the list of customer entries into a file on local storage.
 FR1.7: The system allows user to load a list from file into the application to add on to existing data or to modify it.
+FR1.7.1: The file type must be .json and the file must exist in the same folder where program is runned.
 
 Non-Functional Requirements
 NFR2.1: Security - user input is validated based on datatype and size. This prevents cross-site scripting and poor data entry.
@@ -25,6 +28,7 @@ NFR3.3: Accessibility - users error allows the application to continue operating
 NFR3.4: Error catching - errors in uploading files like uploading unsupported file types are caught and prevents the application from break.
 
 ===== Design =====
+
 Python is chosen due to the ease of input validation. Python's "re" package allow easy use of regex matching to perform user input validation, the prevalent operation in this application.
 Procedural programming is employed, breaking down the application's operations into small functions to perform tasks in bitesize, efficient manners. This can be implemented because users may not need to create, update, and delete within a single workflow.
 This allows the user and the application to run only the necessary functions and operations for their intentions and purpose.
