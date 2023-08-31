@@ -144,7 +144,7 @@ Expected Output: console will print 'file not found' and prompt reinput or retur
 
 ====== Two Possible Enhancements ======
 
-1. Login system can be implemented to allow authentication and authorization.
+1. More file types can be supported for data saving and loading.
 
 2. Indexing can be implemented for search to allow high performance when large datasets are expected.
 
