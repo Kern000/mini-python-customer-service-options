@@ -26,7 +26,7 @@ FR1.6: The system allows users to save and export the list of customer entries i
 
 FR1.7: The system allows user to load a list from file into the application to add on to existing data or to modify it.
 
-FR1.7.1: The file type must be .json and the file must exist in the same folder where program is runned.
+FR1.7.1: The file type must be .json and the file must exist in the same folder as the program, unless the full file path is specified.
 
 Non-Functional Requirements
 
